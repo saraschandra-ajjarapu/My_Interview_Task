@@ -108,40 +108,54 @@ def findend (i,j,a,output, index):
     x = len(a)
     y = len (a[0])
     
-#column edge case
+# flag to check column edge case, 
+    # initializing with 0 
     flagc = 0
 
-#row edge case
+# flag to check row edge case, 
+    # initializing with 0 
     flagr = 0
 
-#loop breaks first 1 encounters
+# loop breaks where first 1 encounters
     for m in range(i,x):
         if a[m][j] == 1:
-            flagr = 1 
+            flagr = 1  # set the flag 
             break
+  # pass because already processed 
         #if a[m][j] == 5:
            # pass
         
     for n in range (j,y):
+  # loop breaks where first 1 encounters 
         if a[m][n] == 1:
-            flagc = 1
+            flagc = 1 # set the flag 
             break
+   # fill rectangle elements with any 
+            # number so that we can exclude 
+            # next time 
        # a[m][n] = 5
 
     if flagr == 1:
         output [index].append(m-1)
         print (m-1)
     else:
+      # when end point touch the boundary
         output[index].append(m)
     if flagc == 1:
          output [index].append(n-1)
     else:
+       # when end point touch the boundary 
         output[index].append(n)
         
     
 def get_rectangle_coordinates(a):
+   # retrieving the column size of array 
     size_of_array = len(a)
+    # output array where we are going 
+    # to store our output  
     output = []
+    # It will be used for storing start 
+    # and end location in the same index 
     index = -1 
     
     flag = False
@@ -150,13 +164,17 @@ def get_rectangle_coordinates(a):
             print(flag)
             if a[i][j] == 0 and flag == False: 
                 flag = True
+                # storing initial position  
+                # of rectangle 
                 output.append([i, j])
+                # will be used for the  
+                # last position 
                 index = index + 1
                 findend(i,j,a,output, index)
 
     print (output)
             
-
+# driver code 
 tests = [
   [1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1],
